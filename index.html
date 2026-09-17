@@ -259,21 +259,26 @@
   }
 
   /* ================= Slide 2 — Stats ================= */
-  .stat-row.s2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin-top: 56px; }
+  /* Open editorial stat band — oversized numerals over hairline-divided columns */
+  .stat-row.s2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; margin-top: 0; flex: 1; align-items: center; }
   .stat-row.s2 .stat-card {
-    background: var(--white); border: 1.5px solid var(--forest-700); border-radius: 8px;
-    padding: 40px 36px 36px;
-    display: flex; flex-direction: column; gap: 14px;
-    min-height: 0;
+    background: transparent; border: 0; border-left: 1px solid var(--bone-200, #E8E1CC);
+    padding: 16px 56px;
     display: flex; flex-direction: column; gap: 18px;
+    min-height: 0;
   }
+  .stat-row.s2 .stat-card:first-child { border-left: 0; padding-left: 0; }
   .stat-row.s2 .stat-card .stat-num {
-    font-family: var(--font-display); font-weight: 400; font-size: 116px; line-height: 0.9; color: var(--forest-700);
-    letter-spacing: -0.04em;
+    font-family: var(--font-display); font-weight: 400; font-size: 152px; line-height: 0.86; color: var(--forest-700);
+    letter-spacing: -0.05em;
   }
-  .stat-row.s2 .stat-card .stat-label { font-family: var(--font-sans); font-weight: 700; font-size: 18px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--forest-900); }
-  .stat-row.s2 .stat-card .stat-body { font-family: var(--font-sans); font-size: 22px; line-height: 1.4; color: var(--grey-800); flex: 1; }
-  .stat-row.s2 .stat-card .stat-source { font-family: var(--font-sans); font-size: 16px; color: var(--grey-500); letter-spacing: 0; }
+  .stat-row.s2 .stat-card .stat-label {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--font-sans); font-weight: 700; font-size: 15px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--forest-500, #6B8A4A);
+  }
+  .stat-row.s2 .stat-card .stat-label::before { content: ""; width: 26px; height: 2px; border-radius: 1px; background: var(--forest-500, #6B8A4A); flex: 0 0 auto; }
+  .stat-row.s2 .stat-card .stat-body { font-family: var(--font-sans); font-size: 21px; line-height: 1.45; color: var(--grey-600); }
+  .stat-row.s2 .stat-card .stat-source { font-family: var(--font-sans); font-size: 15px; color: var(--grey-500); letter-spacing: 0; margin-top: 2px; }
 
   /* ================= Slide 3 — Who it's for ================= */
   .s3 .body-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; flex: 1; min-height: 0; margin-top: 44px; }
@@ -565,7 +570,8 @@
     display: grid; grid-template-columns: 1.05fr 1fr;
     gap: 80px;
     flex: 1;
-    align-items: start;
+    min-height: 0;
+    align-items: stretch;
   }
 
   /* Left — Hero "the moment" */
@@ -1643,6 +1649,30 @@
     #welcome-screen .welcome-begin, #welcome-screen .welcome-hint, #welcome-screen .welcome-back, .fs-toggle { display: none !important; }
     .canopy::before { animation: none !important; transform: scale(1.0) !important; }
   }
+
+  /* ════════ Polish pass: unified hairline card language + eyebrow signature ════════ */
+  /* Brand signature: accent rule before every slide eyebrow */
+  .title-block .eyebrow { display: inline-flex; align-items: center; gap: 14px; }
+  .title-block .eyebrow::before { content: ""; width: 32px; height: 2px; border-radius: 1px; background: var(--forest-500, #6B8A4A); flex: 0 0 auto; }
+  .on-dark .title-block .eyebrow::before { background: rgba(255,255,255,0.45); }
+
+  /* Retire hard forest borders on light cards in favour of bone hairlines */
+  .slabs .addon { border: 1px solid var(--bone-300, #D9D2BD); border-radius: 12px; box-shadow: 0 1px 0 rgba(28,49,24,0.04); }
+  .s11 .step { border: 1px solid var(--bone-300, #D9D2BD); border-radius: 12px; box-shadow: 0 1px 0 rgba(28,49,24,0.04); }
+  .s11 .price-card.alt { border: 1px solid var(--bone-300, #D9D2BD); box-shadow: 0 1px 0 rgba(28,49,24,0.04); }
+
+  /* Shadows that raster as grey bands -> hairline shadows */
+  .steam .team-card { box-shadow: 0 1px 0 rgba(28,49,24,0.04); }
+  .s3 .crit-photo { box-shadow: 0 1px 0 rgba(28,49,24,0.04); }
+
+  /* Slide 5: slightly denser, fills the frame without clipping */
+  .s3b .symptoms-card { margin-top: 30px; }
+  .s3b .symptoms-card .sc-group { padding: 14px 0; }
+  .s3b .sc-footnote { margin-top: 22px; }
+
+  /* Slide 6: timeline rows breathe across the full height */
+  .s5 .timeline { justify-content: space-between; }
+
 </style>
 </head>
 <body style="">
