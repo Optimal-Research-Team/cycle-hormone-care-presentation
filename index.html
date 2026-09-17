@@ -347,6 +347,26 @@
     white-space: nowrap;
   }
 
+  /* Left column: criteria stacked over a clinic photo */
+  .s3 .crit-col { display: flex; flex-direction: column; gap: 40px; min-width: 0; min-height: 0; }
+  .s3 .crit-photo {
+    position: relative; flex: 1; min-height: 200px; max-height: 280px;
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--bone-300, #D9D2BD);
+    box-shadow: 0 2px 14px rgba(28,49,24,0.05);
+  }
+  .s3 .crit-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; display: block; }
+  .s3 .crit-photo .cp-tag {
+    position: absolute; left: 20px; bottom: 18px;
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 8px 16px; background: rgba(255,255,255,0.92);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-radius: 999px;
+    font-family: var(--font-sans); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--forest-700);
+  }
+  .s3 .crit-photo .cp-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--forest-500, #6B8A4A); }
+
   /* ================= Slide 3b — Lesser-known symptoms (full-width table) ================= */
   .s3b .slide-frame { padding-top: 60px; }
   .s3b .symptoms-card {
@@ -696,31 +716,41 @@
     align-self: start; padding-top: 8px; white-space: nowrap;
   }
 
-  /* ================= Slide 6 — Therapy options ================= */
-  .s6 .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 40px; }
+  /* ================= Slide 6 — Therapy options =================
+     Four equal cards sharing the safety-slide card language: white,
+     hairline bone border, category eyebrow with accent rule, serif
+     title, check bullets. No card is visually privileged. */
+  .s6 .options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 40px; flex: 1; min-height: 0; align-content: stretch; }
   .s6 .option {
-    border-radius: 8px; padding: 36px 32px;
-    display: flex; flex-direction: column; gap: 20px;
+    position: relative;
+    background: var(--white);
+    border: 1px solid var(--bone-300, #D9D2BD);
+    border-radius: 12px;
+    padding: 30px 28px;
+    display: flex; flex-direction: column; gap: 14px;
     min-height: 0;
+    box-shadow: 0 1px 0 rgba(28,49,24,0.04);
   }
-  .s6 .option.a { background: var(--white); border: 1.5px solid var(--forest-700); }
-  .s6 .option.b { background: var(--forest-700); color: var(--cream-50); }
-  .s6 .option.c { background: var(--white); border: 1.5px solid var(--forest-700); }
-  .s6 .option .cat { font-family: var(--font-sans); font-weight: 700; font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--forest-900); }
-  .s6 .option.b .cat { color: var(--forest-500); }
-  .s6 .option h3 { font-family: var(--font-display); font-size: 50px; line-height: 0.98; letter-spacing: -0.04em; color: var(--forest-700); }
-  .s6 .option.b h3 { color: var(--cream-50); }
-  .s6 .option ul { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
+  .s6 .option .cat {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-sans); font-weight: 700; font-size: 12.5px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--forest-500, #6B8A4A);
+  }
+  .s6 .option .cat::before { content: ""; width: 26px; height: 2px; border-radius: 1px; background: var(--forest-500, #6B8A4A); flex: 0 0 auto; }
+  .s6 .option h3 { font-family: var(--font-display); font-size: 31px; line-height: 1.02; letter-spacing: -0.02em; color: var(--forest-700); }
+  .s6 .option ul { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
   .s6 .option li {
-    font-family: var(--font-sans); font-size: 21px; line-height: 1.4; color: var(--grey-800);
-    padding-left: 28px; position: relative;
+    font-family: var(--font-sans); font-size: 18px; line-height: 1.4; color: var(--grey-800);
+    padding-left: 26px; position: relative;
   }
-  .s6 .option.b li { color: rgba(255,255,255,0.9); }
   .s6 .option li::before {
-    content: ""; position: absolute; left: 0; top: 11px; width: 14px; height: 1.5px; background: var(--forest-700);
+    content: ""; position: absolute; left: 0; top: 8px;
+    width: 12px; height: 6px;
+    border-left: 2px solid var(--forest-500, #6B8A4A);
+    border-bottom: 2px solid var(--forest-500, #6B8A4A);
+    transform: rotate(-45deg);
   }
-  .s6 .option.b li::before { background: var(--forest-500); }
-  .s6 .footnote { margin-top: 28px; font-family: var(--font-sans); font-size: 22px; color: var(--grey-600); font-style: italic; }
+  .s6 .footnote { margin-top: 26px; font-family: var(--font-sans); font-size: 21px; color: var(--grey-600); font-style: italic; }
 
   /* Slide 6 — "also included" support cards (visually distinct: filled sage, left accent) */
   .s6 .support-row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 26px; }
@@ -833,7 +863,7 @@
 
   /* ================= Slide 8 — Safety ================= */
   .s8 .intro { max-width: 1300px; font-family: var(--font-sans); font-size: 28px; line-height: 1.45; color: var(--grey-700); letter-spacing: -0.01em; margin-top: 22px; }
-  .s8 .columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; flex: 1; }
+  .s8 .columns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 48px; flex: 1; }
   .s8 .col {
     position: relative;
     background: var(--white);
@@ -901,6 +931,11 @@
   .s8 .col li::before {
     content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: var(--forest-500);
   }
+
+  /* 4-column refit */
+  .s8 .col h4 { font-size: 27px !important; }
+  .s8 .col li { font-size: 17px !important; }
+  .s8 .col .col-num { font-size: 180px; }
 
   /* ================= Slide 9 — Not the right fit ================= */
   .s9 { display: flex; }
@@ -1091,7 +1126,7 @@
     letter-spacing: -0.02em; color: var(--grey-800);
   }
   .shmap .legend .lg-name .dir { font-family: var(--font-sans); font-size: 24px; color: var(--forest-700); }
-  .shmap .legend .lg-status { font-family: var(--font-sans); font-size: 18px; line-height: 1.35; color: var(--grey-500); margin-top: 6px; white-space: nowrap; }
+  .shmap .legend .lg-status { font-family: var(--font-sans); font-size: 18px; line-height: 1.35; color: var(--grey-500); margin-top: 6px; }
   .shmap .legend .lg-source {
     margin-top: auto; padding-top: 24px;
     font-family: var(--font-sans); font-size: 13px; line-height: 1.55; color: var(--grey-500);
@@ -1766,7 +1801,7 @@
       <div class="title-block">
         <div class="eyebrow">WHAT'S DRIVING YOUR SYMPTOMS</div>
         <h2 class="display display-md">The biology behind your <span class="italic ring-word">symptoms</span>.</h2>
-        <p class="lead">Five systems work in concert across your cycle — androgens, ovulation, insulin, thyroid and iron. When one shifts, the effects ripple across your whole wellbeing.</p>
+        <p class="lead">Five systems work in concert across your cycle. Whether it's PCOS/PMOS, PMS/PMDD, irregular periods — or symptoms no one has explained yet — the answer usually starts here.</p>
       </div>
 
       <div class="body-grid">
@@ -1864,19 +1899,19 @@
 
             <!-- Driver labels (right column) -->
             <text x="590" y="81"  font-family="Public Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#5db882">Androgens ↑</text>
-            <text x="590" y="96"  font-family="Public Sans, Inter, system-ui, sans-serif" font-size="9.5" fill="#a0c0a8">Elevated in PCOS/PMOS</text>
+            <text x="590" y="96"  font-family="Public Sans, Inter, system-ui, sans-serif" font-size="9.5" fill="#a0c0a8">PCOS/PMOS · acne · unwanted hair</text>
 
             <text x="590" y="181" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#70b8b0">Ovulation &amp; progesterone</text>
-            <text x="590" y="196" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="9.5" fill="#a0c0a8">Disrupted when cycles are anovulatory</text>
+            <text x="590" y="196" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="9.5" fill="#a0c0a8">Irregular cycles · PMS/PMDD</text>
 
             <text x="590" y="276" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#c8a840">Insulin &amp; metabolic</text>
-            <text x="590" y="291" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="9.5" fill="#a0c0a8">Central to PCOS assessment</text>
+            <text x="590" y="291" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="9.5" fill="#a0c0a8">PCOS · weight &amp; energy</text>
 
             <text x="590" y="366" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#c88040">Thyroid (TSH)</text>
-            <text x="590" y="381" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="9.5" fill="#a0c0a8">Mimics &amp; overlaps cycle symptoms</text>
+            <text x="590" y="381" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="9.5" fill="#a0c0a8">Thyroid conditions · fatigue · mood</text>
 
             <text x="590" y="446" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#c06060">Iron &amp; ferritin</text>
-            <text x="590" y="461" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="9.5" fill="#a0c0a8">Depleted by heavy bleeding</text>
+            <text x="590" y="461" font-family="Public Sans, Inter, system-ui, sans-serif" font-size="9.5" fill="#a0c0a8">Heavy periods · fatigue</text>
 
           </svg>
         </div>
@@ -1886,35 +1921,35 @@
             <span class="lg-swatch" style="background:#5db882;"></span>
             <div>
               <div class="lg-name">Androgens <span class="dir">↑</span></div>
-              <div class="lg-status">Acne, unwanted hair growth, scalp thinning — the classic PCOS/PMOS pattern.</div>
+              <div class="lg-status">The classic PCOS/PMOS pattern — acne, hair growth, thinning.</div>
             </div>
           </div>
           <div class="lg-row">
             <span class="lg-swatch" style="background:#70b8b0;"></span>
             <div>
               <div class="lg-name">Ovulation &amp; progesterone</div>
-              <div class="lg-status">Irregular ovulation unsettles cycles, premenstrual mood and bleeding patterns.</div>
+              <div class="lg-status">Irregular or absent cycles and PMS/PMDD both start here.</div>
             </div>
           </div>
           <div class="lg-row">
             <span class="lg-swatch" style="background:#c8a840;"></span>
             <div>
               <div class="lg-name">Insulin &amp; metabolic</div>
-              <div class="lg-status">Insulin resistance is central in PCOS — it disrupts cycles, weight and energy.</div>
+              <div class="lg-status">Central in PCOS — drives weight, energy and cycle changes.</div>
             </div>
           </div>
           <div class="lg-row">
             <span class="lg-swatch" style="background:#c88040;"></span>
             <div>
               <div class="lg-name">Thyroid (TSH)</div>
-              <div class="lg-status">Thyroid conditions mimic or overlap cycle and mood symptoms — easy to miss.</div>
+              <div class="lg-status">Mimics cycle and mood symptoms — checked, not assumed.</div>
             </div>
           </div>
           <div class="lg-row" style="border-bottom: 0;">
             <span class="lg-swatch" style="background:#c06060;"></span>
             <div>
               <div class="lg-name">Iron &amp; ferritin</div>
-              <div class="lg-status">Heavy periods quietly deplete iron — a common driver of fatigue and hair changes.</div>
+              <div class="lg-status">Heavy periods deplete iron — fatigue and hair changes follow.</div>
             </div>
           </div>
           <div class="lg-source">Sources: 2023 International PCOS/PMOS Guideline · ACOG guidance on premenstrual disorders · NICE NG88 (heavy menstrual bleeding)</div>
@@ -1937,53 +1972,60 @@
       </div>
 
       <div class="body-grid">
-        <ul class="criteria">
-          <li>You're roughly 18–45 and still having periods — or should be.</li>
-          <li>Your cycles are irregular, absent, heavy or painful — or something feels off.</li>
-          <li>You're dealing with hormonal acne, unwanted hair growth or hair thinning.</li>
-          <li>You suspect PCOS or PMS/PMDD — or you have no diagnosis at all. You don't need one to start.</li>
-          <li>No referral needed — and you don't need a family doctor to enrol.</li>
-        </ul>
+        <div class="crit-col">
+          <ul class="criteria">
+            <li>You're roughly 18–45 and still having periods — or should be.</li>
+            <li>Your cycles are irregular, absent, heavy or painful — or something feels off.</li>
+            <li>You're dealing with hormonal acne, unwanted hair growth or hair thinning.</li>
+            <li>You suspect PCOS or PMS/PMDD — or you have no diagnosis at all. You don't need one to start.</li>
+            <li>No referral needed — and you don't need a family doctor to enrol.</li>
+          </ul>
+          <div class="crit-photo">
+            <img src="assets/images/clinic-waiting-green.webp" alt="Optimal Clinic waiting area">
+            <div class="cp-tag"><span class="dot"></span>Optimal · Barrie</div>
+          </div>
+        </div>
 
         <div class="symptoms-card">
           <div class="sc-head">
-            <h4>Pick what brought you here</h4>
-            <div class="sc-count">Most people start unsure</div>
+            <h4>What brought you here</h4>
+            <div class="sc-count">6 concerns</div>
           </div>
           <div class="sc-body">
             <div class="sc-group">
               <div class="sc-cat">Cycle pattern</div>
               <ul class="sc-items">
-                <li>Irregular</li>
-                <li>Absent</li>
-                <li>Heavy</li>
-                <li>Painful</li>
+                <li>Irregular, absent, heavy or painful</li>
               </ul>
             </div>
             <div class="sc-group">
               <div class="sc-cat">PCOS / PMOS</div>
               <ul class="sc-items">
                 <li>Suspected or diagnosed</li>
-                <li>Ovulation concerns</li>
               </ul>
             </div>
             <div class="sc-group">
               <div class="sc-cat">PMS / PMDD</div>
               <ul class="sc-items">
-                <li>Cycle-linked mood symptoms</li>
-                <li>Physical symptoms before periods</li>
+                <li>Cycle-linked mood &amp; physical symptoms</li>
               </ul>
             </div>
             <div class="sc-group">
-              <div class="sc-cat">Skin &amp; Hair</div>
+              <div class="sc-cat">Skin &amp; hair</div>
               <ul class="sc-items">
-                <li>Hormonal acne</li>
-                <li>Unwanted hair growth</li>
+                <li>Acne</li>
+                <li>Hair growth</li>
                 <li>Hair thinning</li>
               </ul>
             </div>
             <div class="sc-group">
-              <div class="sc-cat">Not sure?</div>
+              <div class="sc-cat">Pelvic symptoms</div>
+              <ul class="sc-items">
+                <li>Painful periods or pelvic pain</li>
+              </ul>
+            </div>
+            <div class="sc-group">
+              <div class="sc-cat">Not sure yet?</div>
               <ul class="sc-items">
                 <li>Most people start here</li>
               </ul>
@@ -2335,32 +2377,42 @@
       <div class="options">
         <div class="option a">
           <div class="cat">Cycle &amp; bleeding</div>
-          <h3>Cycle regulation &amp;<br>bleeding control</h3>
+          <h3>Cycle<br>regulation</h3>
           <ul>
             <li>Combined hormonal contraception</li>
             <li>Cyclic progestin</li>
-            <li>Hormonal IUD, NSAIDs &amp; tranexamic acid</li>
-            <li>Iron repletion when needed</li>
+            <li>Hormonal IUD</li>
+            <li>NSAIDs, tranexamic acid &amp; iron repletion</li>
           </ul>
         </div>
         <div class="option b">
-          <div class="cat">Skin, hair &amp; metabolic</div>
-          <h3>Androgen &amp;<br>metabolic support</h3>
+          <div class="cat">Skin &amp; hair</div>
+          <h3>Acne, hair &amp;<br>androgens</h3>
           <ul>
             <li>Anti-androgen therapy (e.g. spironolactone)</li>
             <li>Topical &amp; oral acne treatments</li>
-            <li>Insulin-sensitizing medication (e.g. metformin)</li>
-            <li>Inositol &amp; nutrition support, where evidence supports it</li>
+            <li>Hair-growth treatments</li>
+            <li>Dermatology referral when appropriate</li>
           </ul>
         </div>
         <div class="option c">
-          <div class="cat">Mood &amp; referral</div>
-          <h3>PMS / PMDD care<br>&amp; referral</h3>
+          <div class="cat">Energy &amp; weight</div>
+          <h3>Metabolic<br>health</h3>
           <ul>
-            <li>Daily symptom tracking (2–3 months) to confirm the pattern</li>
+            <li>Insulin-sensitizing medication (e.g. metformin)</li>
+            <li>Inositol, where evidence supports it</li>
+            <li>Nutrition &amp; movement support</li>
+            <li>InBody tracking through the program</li>
+          </ul>
+        </div>
+        <div class="option d">
+          <div class="cat">Mood &amp; beyond</div>
+          <h3>PMS / PMDD<br>&amp; referral</h3>
+          <ul>
+            <li>Symptom tracking (2–3 cycles) to confirm the pattern</li>
             <li>SSRIs — continuous or luteal-phase</li>
             <li>Sleep &amp; stress support</li>
-            <li>Gynecology, endocrinology, dermatology or fertility referral</li>
+            <li>Gynecology, endocrinology &amp; fertility referral</li>
           </ul>
         </div>
       </div>
@@ -2475,15 +2527,27 @@
         </div>
         <div class="col">
           <div class="sub">Class 03</div>
-          <h4>Metabolic &amp; mood support</h4>
+          <h4>Metabolic support</h4>
           <div class="considerations-label">Considerations</div>
           <ul>
             <li>Metformin: GI side-effects that usually settle with time</li>
             <li>Inositol: evidence-informed dosing — quality matters</li>
-            <li>SSRIs: continuous or luteal-phase, reviewed together</li>
+            <li>B12 monitoring with longer-term metformin</li>
             <li>Nutrition &amp; movement support throughout</li>
           </ul>
           <div class="col-num">03</div>
+        </div>
+        <div class="col">
+          <div class="sub">Class 04</div>
+          <h4>Mood support</h4>
+          <div class="considerations-label">Considerations</div>
+          <ul>
+            <li>SSRIs: continuous or luteal-phase, chosen together</li>
+            <li>Early side-effects reviewed at follow-up</li>
+            <li>Never stopped abruptly — tapered with your NP</li>
+            <li>Written escalation plan for mood changes</li>
+          </ul>
+          <div class="col-num">04</div>
         </div>
       </div>
     </div>
@@ -2503,16 +2567,17 @@
       </div>
 
       <div class="conditions">
-        <div class="urg"><div class="n">01</div><p>Severe or sudden headaches, or visual changes.</p></div>
-        <div class="urg"><div class="n">02</div><p>Calf pain or swelling, or chest pain.</p></div>
+        <div class="urg"><div class="n">01</div><p>Severe or sudden headache, or visual changes.</p></div>
+        <div class="urg"><div class="n">02</div><p>Calf pain or swelling, chest pain, or shortness of breath.</p></div>
         <div class="urg"><div class="n">03</div><p>Bleeding that soaks a pad or tampon every hour for several hours, or with dizziness.</p></div>
         <div class="urg"><div class="n">04</div><p>Severe pelvic pain, especially with a possible pregnancy.</p></div>
-        <div class="urg"><div class="n">05</div><p>Significant mood deterioration or thoughts of self-harm.</p></div>
+        <div class="urg"><div class="n">05</div><p>Severe allergic reaction, fainting, severe muscle weakness, or a racing or irregular heartbeat.</p></div>
+        <div class="urg"><div class="n">06</div><p>Significant mood deterioration or thoughts of self-harm.</p></div>
       </div>
 
       <div class="footer-note">
         <div class="fn-tag">Non-emergency</div>
-        <div>You'll receive a written <strong>escalation protocol handout</strong> at your initial consultation. For anything that isn't an emergency, message us through the secure portal and we'll guide you on next steps.</div>
+        <div>You'll receive a written <strong>escalation protocol handout</strong> at your initial consultation, covering every medication we prescribe. For anything that isn't an emergency — including mood changes on any treatment — message us through the secure portal and we'll guide you on next steps.</div>
       </div>
     </div>
 
